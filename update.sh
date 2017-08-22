@@ -2,4 +2,4 @@
 set -e
 
 git submodule update --init --recursive
-git submodule foreach git pull --recursive-submodule origin master
+git submodule foreach git pull --recurse-submodules origin master
