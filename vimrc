@@ -8,7 +8,8 @@ syntax on
 " ===== Colors ======
 "
 
-colorscheme one
+set termguicolors
+colorscheme carbonized-dark
 
 "
 " ===== Settings =====
@@ -107,7 +108,7 @@ nnoremap <leader>{ viw<esc>a{<CR>}<esc>O
 nnoremap <leader>[ viw<esc>a[<CR>]<esc>O
 
 " Block Indention macro
-vnoremap <TAB> :norm ^i<tab><esc> V
+"vnoremap <TAB> :norm ^i<tab><esc> V
 
 " Opens horizontal terminal
 nnoremap <A-t> :sp<CR>:te<CR>
