@@ -1,9 +1,14 @@
 " Load plugins
 execute pathogen#infect()
 
-syntax on
 filetype plugin indent on
-colorscheme molokai
+syntax on
+
+"
+" ===== Colors ======
+"
+
+colorscheme one
 
 "
 " ===== Settings =====
@@ -79,10 +84,10 @@ nnoremap q: :q
 cmap w!! w !sudo tee > /dev/null %
 
 " Better split switching
-nnoremap <C-j> <C-W>j
-nnoremap <C-k> <C-W>k
-nnoremap <C-h> <C-W>h
-nnoremap <C-l> <C-W>l
+nnoremap <A-j> <C-W>j
+nnoremap <A-k> <C-W>k
+nnoremap <A-h> <C-W>h
+nnoremap <A-l> <C-W>l
 
 " Reverse <Tab> in normal mode with shift
 nnoremap <S-Tab> <C-o>
@@ -104,6 +109,24 @@ nnoremap <leader>[ viw<esc>a[<CR>]<esc>O
 " Block Indention macro
 vnoremap <TAB> :norm ^i<tab><esc> V
 
+" Opens horizontal terminal
+nnoremap <A-t> :sp<CR>:te<CR>
+
+" Map <ESC> to exit terminal mode
+:tnoremap <Esc> <C-\><C-n>
+
+" Map ALT+{h,j,k,l} to navigate windows from terminal mode
+:tnoremap <A-h> <C-\><C-N><C-w>h
+:tnoremap <A-j> <C-\><C-N><C-w>j
+:tnoremap <A-k> <C-\><C-N><C-w>k
+:tnoremap <A-l> <C-\><C-N><C-w>l
+
+" Map ALT+{H,J,K,L} to resize windows from normal mode
+nnoremap <A-H> 10<C-W><
+nnoremap <A-L> 10<C-W>>
+nnoremap <A-K> 10<C-W>+
+nnoremap <A-J> 10<C-W>-
+
 "
 " ===== Airline ======
 "
@@ -119,6 +142,13 @@ let g:airline_theme='deus'
 
 " Prevent home folder from being littered with .netwrhist
 let g:netrw_home=$XDG_CACHE_HOME.'/vim'
+
+"
+" ===== NerdTree =====
+"
+
+" Toggle NerdTree with n
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 "
 " ===== Deprecation =====
