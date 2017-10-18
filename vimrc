@@ -34,7 +34,8 @@ set autoread			" Auto reread changed files without prompting me
 set laststatus=2
 set hidden
 
-set ruler			" Show the cursor position all the time
+set guicursor+=n:blinkon1	" Cursor blink in normal mode
+set guicursor+=c-v:hor100	" Horizontal cursor in command and visual mode
 set fileformats=unix
 
 set showmatch			" Show the matching brackets
@@ -45,26 +46,27 @@ set smartcase			" ... but not when search pattern contains upper case
 set ttyfast
 set lazyredraw			" Wait to redraw
 
-" Make Vim to handle long lines
+" Make Vim to handle long lines with :gwap
 set wrap
 set textwidth=79
-set formatoptions=qrn1
+set formatoptions+=qrtn1
 
 " Draw 80 character line limit
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=81
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%80v.\+', -1)
 endif
 
-" How Vim handles tabs for different files
+" File type defaults
 set autoindent
 
 au BufNewFile,BufRead *.vim setlocal noet ts=4 sw=4 sts=4
-au BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
+au BufNewFile,BufRead *.txt,*.tex setlocal spell noet ts=4 sw=4
 au BufNewFile,BufRead *.md setlocal spell noet ts=4 sw=4
 au BufNewFile,BufRead *.yml,*.yaml setlocal expandtab ts=2 sw=2
 au BufNewFile,BufRead *.js,*.json setlocal expandtab ts=2 sw=2 suffixesadd+=.js
+au BufNewFile,BufRead *.html,*.htm,*.css setlocal expandtab ts=2 sw=2
 au BufNewFile,BufRead *.py setlocal expandtab ts=4 sw=4
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 au FileType fstab,systemd setlocal noet
@@ -97,6 +99,9 @@ nnoremap <S-Tab> <C-o>
 " gF changes the current window
 nnoremap gf :vertical wincmd f<CR>
 
+" Clear all previous search highlights
+nnoremap <Space> :noh<CR>
+
 "
 " ===== Macros =====
 "
@@ -108,7 +113,7 @@ nnoremap <leader>{ viw<esc>a{<CR>}<esc>O
 nnoremap <leader>[ viw<esc>a[<CR>]<esc>O
 
 " Block Indention macro
-"vnoremap <TAB> :norm ^i<tab><esc> V
+vnoremap <TAB> :norm ^i<TAB><CR>
 
 " Opens horizontal terminal
 nnoremap <A-t> :sp<CR>:te<CR>
@@ -123,8 +128,8 @@ nnoremap <A-t> :sp<CR>:te<CR>
 :tnoremap <A-l> <C-\><C-N><C-w>l
 
 " Map ALT+{H,J,K,L} to resize windows from normal mode
-nnoremap <A-H> 10<C-W><
-nnoremap <A-L> 10<C-W>>
+nnoremap <A-H> 10<C-W>>
+nnoremap <A-L> 10<C-W><
 nnoremap <A-K> 10<C-W>+
 nnoremap <A-J> 10<C-W>-
 
@@ -155,5 +160,11 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " ===== Deprecation =====
 "
 
+vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
+
 " Indent lines set to be ┆
 let g:indentLine_char = '┆'
+
+" Concealing characters
+let g:javascript_conceal_this = "@"
+set conceallevel=1
