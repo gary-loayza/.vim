@@ -51,6 +51,9 @@ set wrap
 set textwidth=79
 set formatoptions+=qrtn1
 
+" Folding instructions with zc and zo
+set foldmethod=indent
+
 " Draw 80 character line limit
 if exists('+colorcolumn')
   set colorcolumn=81
