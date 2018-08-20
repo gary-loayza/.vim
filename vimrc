@@ -71,6 +71,7 @@ au BufNewFile,BufRead *.yml,*.yaml setlocal expandtab ts=2 sw=2
 au BufNewFile,BufRead *.js,*.json setlocal expandtab ts=2 sw=2 suffixesadd+=.js
 au BufNewFile,BufRead *.html,*.htm,*.css setlocal expandtab ts=2 sw=2
 au BufNewFile,BufRead *.py setlocal expandtab ts=4 sw=4
+au BufNewFile,BufRead *.c setlocal expandtab ts=4 sw=4
 au BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 au FileType fstab,systemd setlocal noet
 au FileType gitconfig,sh,toml setlocal noet
@@ -166,8 +167,5 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 vmap gs y'>p:'[,']-1s/$/+/\|'[,']+1j!<CR>'[0"wy$:.s§.*§\=w§<CR>'[yyP:.s/./=/g<CR>_j
 
 " Indent lines set to be ┆
+let g:indentLine_enabled = 1
 let g:indentLine_char = '┆'
-
-" Concealing characters
-let g:javascript_conceal_this = "@"
-set conceallevel=1
